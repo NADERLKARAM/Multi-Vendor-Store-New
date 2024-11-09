@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', function () {
-    return view('welcome');
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth:admin']
+], function () {
+    // Admin Dashboard Route
+
+
 });
