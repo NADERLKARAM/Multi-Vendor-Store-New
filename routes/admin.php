@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Admin\LoginController;
 
 
 
@@ -14,12 +17,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::group([
     'prefix' => 'admin',
-    'middleware' => ['auth:admin']
+    'as' => 'admin.',
 ], function () {
-    // Admin Dashboard Route
 
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [LoginController::class, 'login'])->name('postLogin');
 
+   
+    Route::group(['middleware' => ['auth:admin']], function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    });
 });
