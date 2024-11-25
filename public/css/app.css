@@ -1,0 +1,49 @@
+.with-wavy-line {
+    position: relative;
+    overflow: hidden;
+    height: 150px; /* توحيد ارتفاع البوكس */
+}
+
+.wavy-line {
+    position: absolute;
+    top: 0; /* الخط يظهر في أعلى العنصر */
+    left: 0;
+    width: 100%;
+    height: 50px; /* ارتفاع الخط المموج */
+    z-index: 0;
+}
+
+.wavy-line svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.wavy-path {
+    fill: url(#gradient); /* تطبيق التدرج */
+    animation: wave-animation 3s ease-out forwards; /* حركة لمرة واحدة */
+    transform: translateX(-100%); /* يبدأ خارج العنصر */
+}
+
+/* تعريف التدرج */
+.wavy-line svg {
+    width: 100%;
+}
+
+.wavy-line svg defs {
+    display: block;
+}
+
+.wavy-line svg #gradient {
+    position: relative;
+}
+
+/* الحركة */
+@keyframes wave-animation {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
